@@ -24,12 +24,35 @@ namespace DECouriers.ViewModels
         [RelayCommand]
         private async Task SignIn()
         {
-            await _firebaseAuthClient.SignInWithEmailAndPasswordAsync(Email, Password);
+            try
+            {
+                await _firebaseAuthClient.SignInWithEmailAndPasswordAsync(Email, Password);
+
+                OnPropertyChanged(nameof(Username));
+
+                await Shell.Current.GoToAsync($"//Dashboard");
+            }
+            catch (FirebaseAuthException ex)
+            {
+                // Handle authentication errors here
+                if (ex.Reason == AuthErrorReason.InvalidEmailAddress)
+                {
+                    await Shell.Current.DisplayAlert("Error", "Invalid email address.", "OK");
+                }
+                else if (ex.Reason == AuthErrorReason.WrongPassword)
+                {
+                    await Shell.Current.DisplayAlert("Error", "Incorrect password.", "OK");
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                }
+            }
+            finally
+            {
+                //
+            }
             
-
-            OnPropertyChanged(nameof(Username));
-
-            await Shell.Current.GoToAsync($"//Dashboard");
         }
 
         [RelayCommand]
