@@ -4,6 +4,7 @@ using Firebase.Auth.Repository;
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 
+
 namespace DECouriers
 {
     public static class MauiProgram
@@ -44,7 +45,7 @@ namespace DECouriers
 
             builder.Services.AddSingleton(new FirebaseAuthClient(new FirebaseAuthConfig()
             {
-                ApiKey = "AIzaSyDHg2UkjHmE56QNmIYvX93C-Z9Ws2FjVb0",
+                ApiKey = Constants.FirebaseAuthApiKey.ToString(),
                 AuthDomain = "decouriers-6eeae.firebaseapp.com",
                 Providers = new Firebase.Auth.Providers.FirebaseAuthProvider[]
                 { 
