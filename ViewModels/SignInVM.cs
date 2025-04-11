@@ -26,6 +26,7 @@ namespace DECouriers.ViewModels
         {
             await _firebaseAuthClient.SignInWithEmailAndPasswordAsync(Email, Password);
             
+
             OnPropertyChanged(nameof(Username));
 
             await Shell.Current.GoToAsync($"//Dashboard");

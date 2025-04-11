@@ -3,10 +3,47 @@
     x:Class="DECouriers.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fonthelper="clr-namespace:DECouriers.Helpers"
     xmlns:local="clr-namespace:DECouriers"
     xmlns:pages="clr-namespace:DECouriers.Pages"
     Title="DECouriers"
-    Shell.FlyoutBehavior="Disabled">
+    FlyoutWidth="280"
+    Shell.FlyoutBehavior="Flyout">
+
+    <!--  Layout Temmplates  -->
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="0.2*,0.8*">
+                <Image
+                    Margin="5"
+                    HeightRequest="32"
+                    Source="{Binding FlyoutIcon}" />
+                <Label
+                    Grid.Column="1"
+                    FontFamily="OppoSansHeavy"
+                    HeightRequest="45"
+                    Text="{Binding Title}"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="0.2*,0.8*">
+                <Image
+                    Margin="5"
+                    HeightRequest="32"
+                    Source="{Binding Icon}" />
+                <Label
+                    Grid.Column="1"
+                    FontFamily="OppoSansHeavy"
+                    HeightRequest="45"
+                    Text="{Binding Title}"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
 
     <ShellContent
         Title="Sign In"
@@ -27,4 +64,24 @@
         Title="Dashboard"
         ContentTemplate="{DataTemplate pages:DashboardView}"
         Route="Dashboard" />
+
+    <!--  Seperator  -->
+    <MenuItem>
+        <Shell.MenuItemTemplate>
+            <DataTemplate>
+                <Label BackgroundColor="{StaticResource Gray600}" HeightRequest="1" />
+            </DataTemplate>
+        </Shell.MenuItemTemplate>
+    </MenuItem>
+
+    <!--  Logout Menu Item  -->
+    <MenuItem Clicked="MenuItem_LogoutClicked" Text="Logout">
+        <MenuItem.IconImageSource>
+            <FontImageSource
+                FontFamily="MaterialIcons"
+                Glyph="{x:Static fonthelper:IconFont.Logout}"
+                Color="{AppThemeBinding Light={StaticResource Gray900},
+                                        Dark=White}" />
+        </MenuItem.IconImageSource>
+    </MenuItem>
 </Shell>

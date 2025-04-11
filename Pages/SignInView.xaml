@@ -3,7 +3,9 @@
     x:Class="DECouriers.Pages.SignInView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="{Binding Title}">
+    Title="{Binding Title}"
+    Shell.FlyoutBehavior="Disabled"
+Shell.NavBarIsVisible="True">
     <VerticalStackLayout Padding="20" Spacing="15">
         <Entry Placeholder="Enter Email" Text="{Binding Email}" />
         <Entry
