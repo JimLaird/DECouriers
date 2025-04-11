@@ -7,13 +7,15 @@
     xmlns:local="clr-namespace:DECouriers"
     xmlns:pages="clr-namespace:DECouriers.Pages"
     Title="DECouriers"
-    FlyoutWidth="280"
+    FlyoutWidth="{OnPlatform Android=280,
+                             iOS=280,
+                             WinUI=320}"
     Shell.FlyoutBehavior="Flyout">
 
     <!--  Layout Temmplates  -->
     <Shell.ItemTemplate>
         <DataTemplate>
-            <Grid ColumnDefinitions="0.2*,0.8*">
+            <Grid ColumnDefinitions="0.2*,0.8*" WidthRequest="{OnPlatform Android=280, iOS=280, WinUI=320}">
                 <Image
                     Margin="5"
                     HeightRequest="32"
@@ -30,7 +32,7 @@
 
     <Shell.MenuItemTemplate>
         <DataTemplate>
-            <Grid ColumnDefinitions="0.2*,0.8*">
+            <Grid ColumnDefinitions="0.2*,0.8*" WidthRequest="{OnPlatform Android=280, iOS=280, WinUI=320}">
                 <Image
                     Margin="5"
                     HeightRequest="32"
@@ -45,25 +47,39 @@
         </DataTemplate>
     </Shell.MenuItemTemplate>
 
-    <ShellContent
+    <!--  Shell Items Not Appearing  -->
+    <ShellItem
         Title="Sign In"
-        ContentTemplate="{DataTemplate pages:SignInView}"
-        Route="SignIn" />
+        FlyoutItemIsVisible="False"
+        Route="SignIn">
+        <ShellContent ContentTemplate="{DataTemplate pages:SignInView}" />
+    </ShellItem>
 
-    <ShellContent
+    <ShellItem
         Title="Sign Up"
-        ContentTemplate="{DataTemplate pages:SignUpView}"
-        Route="SignUp" />
+        FlyoutItemIsVisible="False"
+        Route="SignUp">
+        <ShellContent ContentTemplate="{DataTemplate pages:SignUpView}" />
+    </ShellItem>
 
-    <ShellContent
+    <ShellItem
         Title="Reset Password"
-        ContentTemplate="{DataTemplate pages:ResetPasswordView}"
-        Route="ResetPassword" />
+        FlyoutItemIsVisible="False"
+        Route="ResetPassword">
+        <ShellContent ContentTemplate="{DataTemplate pages:ResetPasswordView}" />
+    </ShellItem>
 
-    <ShellContent
-        Title="Dashboard"
-        ContentTemplate="{DataTemplate pages:DashboardView}"
-        Route="Dashboard" />
+    <!--  Shell Items Appearing in Flyout  -->
+    <ShellItem Title="Dashboard" Route="Dashboard">
+        <ShellItem.Icon>
+            <FontImageSource
+                FontFamily="MaterialIcons"
+                Glyph="{x:Static fonthelper:IconFont.Dashboard}"
+                Color="{AppThemeBinding Light={StaticResource Gray900},
+                                        Dark=White}" />
+        </ShellItem.Icon>
+        <ShellContent ContentTemplate="{DataTemplate pages:DashboardView}" />
+    </ShellItem>
 
     <!--  Seperator  -->
     <MenuItem>
