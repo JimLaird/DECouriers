@@ -2,6 +2,7 @@
 using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
 using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
 
 namespace DECouriers
 {
@@ -12,10 +13,17 @@ namespace DECouriers
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
+                    fonts.AddFont("OPPOSansBold.ttf", "OppoSansBold");
+                    fonts.AddFont("OPPOSansHeavy.ttf", "OppoSansHeavy");
+                    fonts.AddFont("OPPOSansLight.ttf", "OppoSansLight");
+                    fonts.AddFont("OPPOSansMedium.ttf", "OppoSansMedium");
+                    fonts.AddFont("OPPOSansRegular.ttf", "OppoSansRegular");
                 });
 
             //  Register Pages
